@@ -62,22 +62,6 @@ class ArticleService
         throw new \Exception('Undefined field ' . $field);
     }
 
-
-    /**
-     * @param Request $request
-     * @return void
-     */
-    public static function validateAddFormRequest(Request $request)
-    {
-        $fieldsDetails = self::getFormFields();
-        $fieldsValidateRules = array_map(function ($fieldDetails) {
-            return isset($fieldDetails['rule'])
-                ? $fieldDetails['rule']
-                : '';
-        }, $fieldsDetails);
-        $request->validate($fieldsValidateRules);
-    }
-
     /**
      * @param Request $request
      * @return void

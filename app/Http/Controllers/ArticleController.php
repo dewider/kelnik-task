@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SaveRequest;
 use App\Models\Article;
 use App\Services\Article\ArticleService;
 use Illuminate\Http\Request;
@@ -34,9 +35,8 @@ class ArticleController extends Controller
         return view('new', ['fields' => ArticleService::getAddFormFields()]);
     }
 
-    public function save(Request $request): RedirectResponse
+    public function save(SaveRequest $request): RedirectResponse
     {
-        ArticleService::validateAddFormRequest($request);
         ArticleService::storeAddFormRequest($request);
         return redirect('new');
     }

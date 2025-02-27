@@ -18,13 +18,14 @@
                                 class="form-control @error( $fieldName ) is-invalid @enderror"
                                 name="{{ $fieldName }}"
                                 placeholder="{{ $field['title'] }}"
-                            ></textarea>
+                            >{{ old($fieldName) }}</textarea>
                         @else
                             <input
                                 type="text"
                                 class="form-control @error( $fieldName ) is-invalid @enderror"
                                 placeholder="{{ $field['title'] }}"
                                 name="{{ $fieldName }}"
+                                value="{{ old($fieldName) }}"
                             >
                         @endif
                     </div>

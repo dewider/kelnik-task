@@ -37,6 +37,7 @@ class ArticleController extends Controller
     public function save(Request $request): RedirectResponse
     {
         ArticleService::validateAddFormRequest($request);
+        ArticleService::storeAddFormRequest($request);
         return redirect('new');
     }
 }

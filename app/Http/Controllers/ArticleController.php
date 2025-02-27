@@ -12,12 +12,21 @@ class ArticleController extends Controller
 {
     public function index(): View
     {
-        return view('index', ['articles' => Article::latest()->paginate(5)]);
+        $articles = Article::latest()->paginate(5);
+        $articleServices = [];
+        foreach ($articles as $article) {
+            $articleServices[] = new ArticleService($article);
+        }
+        $context = [
+            'articles' => $articleServices,
+            'pagination' => $articles->links()
+        ];
+        return view('index', $context);
     }
 
     public function detail(Article $article): View
     {
-        return view('detail', ['article' => $article]);
+        return view('detail', ['article' => new ArticleService($article)]);
     }
 
     public function new(): View

@@ -6,15 +6,15 @@
     @foreach ($articles as $article)
         <div class="row border-bottom">
             <div class="col-3">
-                <p>Автор: {{ $article->author }}</b></p>
-                <p>{{ $article->created_at }}</p>
+                <p>Автор: {{ $article->getAuthor() }}</b></p>
+                <p>{{ $article->getCreatedAt() }}</p>
             </div>
             <div class="col-7">
-                <h2 class="h4">{{ $article->title }}</h2>
-                {{ $article->preview_text }}
+                <h2 class="h4">{{ $article->getTitle() }}</h2>
+                {{ $article->getPreviewText() }}
             </div>
             <div class="col-2">
-                <a href="{{ route('detail', ['article' => $article->id]) }}">
+                <a href="{{ route('detail', ['article' => $article->getId()]) }}">
                     Подробно
                 </a>
             </div>
@@ -22,6 +22,6 @@
     @endforeach
 
     <div class="row">
-        {{ $articles->links() }}
+        {!! $pagination !!} 
     </div>
 </x-base-layout>

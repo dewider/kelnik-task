@@ -1,7 +1,7 @@
 <x-base-layout>
     <x-slot name="title">
-        {{ $article->title }}
+        {{ $article->getTitle() }}
     </x-slot>
 
-    {{ $article->detail_text }}
+    {{ $article->getDetailText() }}
 </x-base-layout>

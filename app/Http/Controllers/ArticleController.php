@@ -38,6 +38,6 @@ class ArticleController extends Controller
     public function save(SaveRequest $request): RedirectResponse
     {
         ArticleService::storeAddFormRequest($request);
-        return redirect('new');
+        return redirect(route('list'));
     }
 }

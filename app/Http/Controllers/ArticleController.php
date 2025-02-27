@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Services\Article\ArticleService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class ArticleController extends Controller
 {
@@ -20,6 +22,12 @@ class ArticleController extends Controller
 
     public function new(): View
     {
-        return view('new');
+        return view('new', ['fields' => ArticleService::getAddFormFields()]);
+    }
+
+    public function save(Request $request): RedirectResponse
+    {
+        ArticleService::validateAddFormRequest($request);
+        return redirect('new');
     }
 }

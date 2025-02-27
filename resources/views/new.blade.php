@@ -5,21 +5,30 @@
 
     <div class="row">
         <div class="col-12">
-            <form action="{{ route('new') }}">
+            <form
+                action="{{ route('new-save') }}"
+                method="post"
+            >
                 @csrf
 
-                <div class="form-group mb-2">
-                    <input type="text" class="form-control" placeholder="Заголовок*" require>
-                </div>
-                <div class="form-group mb-2">
-                    <input type="text" class="form-control" placeholder="Автор">
-                </div>
-                <div class="form-group mb-2">
-                    <textarea class="form-control" name="" id="" placeholder="Бриф*" require></textarea>
-                </div>
-                <div class="form-group mb-2">
-                    <textarea class="form-control" name="" id="" placeholder="Текст статьи"></textarea>
-                </div>
+                @foreach ($fields as $fieldName => $field)
+                    <div class="form-group mb-2">
+                        @if ($field['type'] == 'text')
+                            <textarea
+                                class="form-control @error( $fieldName ) is-invalid @enderror"
+                                name="{{ $fieldName }}"
+                                placeholder="{{ $field['title'] }}"
+                            ></textarea>
+                        @else
+                            <input
+                                type="text"
+                                class="form-control @error( $fieldName ) is-invalid @enderror"
+                                placeholder="{{ $field['title'] }}"
+                                name="{{ $fieldName }}"
+                            >
+                        @endif
+                    </div>
+                @endforeach
                 <button type="submit" class="btn btn-primary">Отправить</button>
             </form>
         </div>

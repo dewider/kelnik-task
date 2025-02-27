@@ -3,5 +3,14 @@
         {{ $article->getTitle() }}
     </x-slot>
 
-    {{ $article->getDetailText() }}
+    <div class="row">
+        <div class="col-3">
+            Автор: {{ $article->getAuthor() }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            {{ $article->getDetailText() }}
+        </div>
+    </div>
 </x-base-layout>
